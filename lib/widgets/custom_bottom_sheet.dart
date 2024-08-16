@@ -9,24 +9,25 @@ class CustomBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.symmetric(vertical: 32, horizontal: 16),
-      child: Column(
-        children: [
-          CustomTextfeild(
-            hinText: 'Title',
-            maxLines: 1,
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          CustomTextfeild(
-            hinText: 'Content',
-            maxLines: 7,
-          ),
-          SizedBox(
-            height: 50,
-          ),
-          CustomButton(),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            CustomTextfeild(
+              hinText: 'Title',
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            CustomTextfeild(
+              hinText: 'Content',
+              maxLines: 7,
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            CustomButton(),
+          ],
+        ),
       ),
     );
   }
