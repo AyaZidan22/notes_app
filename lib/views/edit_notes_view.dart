@@ -8,24 +8,30 @@ class EditNotesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Column(
-        children: [
-          CustomAppBar(
-            title: 'Edit Note',
-            icon: Icon(Icons.check),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 32, bottom: 20, right: 16, left: 16),
-            child: CustomTextfeild(hinText: 'Title'),
-          ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 20, right: 16, left: 16),
-            child: CustomTextfeild(
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 50,
+            ),
+            CustomAppBar(
+              title: 'Edit Note',
+              icon: Icon(Icons.check),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            CustomTextfeild(hinText: 'Title'),
+            SizedBox(
+              height: 20,
+            ),
+            CustomTextfeild(
               hinText: 'Content',
               maxLines: 7,
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
