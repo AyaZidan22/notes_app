@@ -1,57 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/widgets/custom_button.dart';
-import 'package:notes_app/widgets/custom_text_field.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubits/cubit/add_notes_cubit.dart';
+import 'package:notes_app/helper/show_snack_bar.dart';
+import 'package:notes_app/widgets/add_notes_form.dart';
 
-class CustomBottomSheet extends StatefulWidget {
+class CustomBottomSheet extends StatelessWidget {
   const CustomBottomSheet({super.key});
 
   @override
-  State<CustomBottomSheet> createState() => _CustomBottomSheetState();
-}
-
-class _CustomBottomSheetState extends State<CustomBottomSheet> {
-  String? title, content;
-  GlobalKey<FormState> formKey = GlobalKey();
-  AutovalidateMode? autovalidateMode;
-  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
-      child: SingleChildScrollView(
-        child: Form(
-          key: formKey,
-          child: Column(
-            children: [
-              CustomTextfeild(
-                hinText: 'Title',
-                onSaved: (value) {
-                  title = value;
-                },
+    return BlocProvider(
+      create: (context) => AddNotesCubit(),
+      child: Padding(
+        padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+            left: 16,
+            right: 16,
+            top: 32),
+        child: BlocConsumer<AddNotesCubit, AddNotesState>(
+          listener: (context, state) {
+            if (state is AddNotesSuccess) {
+              Navigator.pop(context);
+            } else if (state is AddNotesFailed) {
+              snackbarError(context, state.errorMessage);
+            }
+          },
+          builder: (context, state) {
+            return AbsorbPointer(
+              absorbing: state is AddNotesLoading ? true : false,
+              child: const SingleChildScrollView(
+                child: AddNoteForm(),
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              CustomTextfeild(
-                hinText: 'Content',
-                maxLines: 7,
-                onSaved: (value) {
-                  value = content;
-                },
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              CustomButton(
-                onTap: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                  } else {
-                    autovalidateMode = AutovalidateMode.always;
-                  }
-                },
-              ),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );
