@@ -3,12 +3,20 @@ import 'package:notes_app/constants.dart';
 
 class CustomTextfeild extends StatelessWidget {
   const CustomTextfeild(
-      {super.key, required this.hinText, this.maxLines=1});
+      {super.key, required this.hinText, this.maxLines = 1, this.onSaved});
   final String hinText;
   final int maxLines;
+  final Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: (value) {
+        if (value?.isEmpty ?? true) {
+          return 'This feild can not be empty';
+        }
+        return null;
+      },
+      onSaved: onSaved,
       cursorColor: kPrimaryColor,
       maxLines: maxLines,
       decoration: InputDecoration(
