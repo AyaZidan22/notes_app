@@ -14,12 +14,12 @@ class EditColorListView extends StatefulWidget {
 
 class _EditColorListViewState extends State<EditColorListView> {
   final List<Color> colorList = const [
+    Color(0xff114B5F),
+    Color(0xff028090),
     Color(0xff180161),
     Color(0xff4F1787),
     Color(0xffEB3678),
     Color(0xffFB773C),
-    Color(0xff114B5F),
-    Color(0xff028090),
   ];
   int currentIndex = 0;
   @override

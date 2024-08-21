@@ -18,6 +18,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
   String? title, content;
   GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode? autovalidateMode;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -52,22 +53,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
               return CustomButton(
                 isLoading: state is AddNotesLoading ? true : false,
                 onTap: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                    DateFormat formatter = DateFormat('yyyy-MM-dd');
-                    String formattedDate = formatter.format(DateTime.now());
-                    NotesModel note = NotesModel(
-                      title: title!,
-                      subTitle: content!,
-                      color:
-                          BlocProvider.of<AddNotesCubit>(context).color.value,
-                      date: formattedDate.toString(),
-                    );
-                    BlocProvider.of<AddNotesCubit>(context).addNotes(note);
-                  } else {
-                    setState(() {});
-                    autovalidateMode = AutovalidateMode.always;
-                  }
+                  notesValidate(context);
                 },
               );
             },
@@ -78,5 +64,27 @@ class _AddNoteFormState extends State<AddNoteForm> {
         ],
       ),
     );
+  }
+
+  void notesValidate(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!.save();
+      NotesModel note = NotesModel(
+        title: title!,
+        subTitle: content!,
+        color: BlocProvider.of<AddNotesCubit>(context).color.value,
+        date: dateFormate(),
+      );
+      BlocProvider.of<AddNotesCubit>(context).addNotes(note);
+    } else {
+      setState(() {});
+      autovalidateMode = AutovalidateMode.always;
+    }
+  }
+
+  String dateFormate() {
+    DateFormat formatter = DateFormat('yyyy-MM-dd');
+    String formattedDate = formatter.format(DateTime.now());
+    return formattedDate;
   }
 }
