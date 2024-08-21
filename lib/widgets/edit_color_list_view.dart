@@ -26,6 +26,7 @@ class _EditColorListViewState extends State<EditColorListView> {
   initState() {
     super.initState();
     currentIndex = selectIndex();
+    BlocProvider.of<AddNotesCubit>(context).color = colorList[currentIndex];
   }
 
   @override
@@ -41,6 +42,7 @@ class _EditColorListViewState extends State<EditColorListView> {
               currentIndex = index;
               BlocProvider.of<AddNotesCubit>(context).color =
                   colorList[currentIndex];
+
               setState(() {});
             },
             child: ColorItem(

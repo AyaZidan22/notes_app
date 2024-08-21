@@ -29,20 +29,26 @@ class CustomNotesItem extends StatelessWidget {
               contentPadding: EdgeInsets.zero,
               title: Text(
                 notes.title,
-                style: const TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 24),
               ),
               subtitle: Text(
                 notes.subTitle,
                 style: TextStyle(
+                  fontSize: 18,
                   color: Colors.white.withOpacity(0.5),
                 ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
               trailing: IconButton(
                 onPressed: () {
                   notes.delete();
                   BlocProvider.of<NotesListCubit>(context).fetchNotes();
                 },
-                icon: const Icon(Icons.delete),
+                icon: const Icon(
+                  Icons.delete,
+                  size: 28,
+                ),
               ),
             ),
             Padding(
