@@ -12,13 +12,13 @@ class ColorItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8),
+      margin: const EdgeInsets.only(right: 16),
       height: 50,
       width: 50,
       decoration: BoxDecoration(
         border: Border.all(
           color: isColorSelected ? Colors.white : color,
-          width: 5.0,
+          width: 2.0,
         ),
         shape: BoxShape.circle,
         color: color,
