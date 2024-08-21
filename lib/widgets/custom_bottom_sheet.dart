@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notes_app/cubits/cubit/add_notes_cubit.dart';
+import 'package:notes_app/cubits/add_notes_cubit/add_notes_cubit.dart';
 import 'package:notes_app/helper/show_snack_bar.dart';
 import 'package:notes_app/widgets/add_notes_form.dart';
 

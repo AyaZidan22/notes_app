@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:hive/hive.dart';
 
 part 'notes_model.g.dart';

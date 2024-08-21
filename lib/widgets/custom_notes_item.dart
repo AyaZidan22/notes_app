@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/models/notes_model.dart';
 import 'package:notes_app/views/edit_notes_view.dart';
 
 class CustomNotesItem extends StatelessWidget {
-  const CustomNotesItem({super.key});
-
+  const CustomNotesItem({super.key, required this.notes});
+  final NotesModel notes;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -22,12 +23,12 @@ class CustomNotesItem extends StatelessWidget {
           children: [
             ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const Text(
-                'Flutter Tips',
-                style: TextStyle(fontSize: 18),
+              title: Text(
+                notes.title,
+                style: const TextStyle(fontSize: 18),
               ),
               subtitle: Text(
-                'Build your own career',
+                notes.subTitle,
                 style: TextStyle(
                   color: Colors.white.withOpacity(0.5),
                 ),
@@ -37,9 +38,9 @@ class CustomNotesItem extends StatelessWidget {
                 icon: const Icon(Icons.delete),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 16.0, right: 16),
-              child: Text('16Aug ,2024'),
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0, right: 16),
+              child: Text(notes.date),
             ),
           ],
         ),
