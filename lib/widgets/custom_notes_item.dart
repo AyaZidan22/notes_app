@@ -40,7 +40,9 @@ class CustomNotesItem extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 16.0, right: 16),
-              child: Text(notes.date),
+              child: Text(
+                notes.date,
+              ),
             ),
           ],
         ),
